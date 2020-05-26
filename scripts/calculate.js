@@ -8,7 +8,7 @@ function calculate() {
     const priceBelowTopLaminateOriginal = 7000;
     const priceBelowTopGraniteOriginal = 12000;
     
-    const priceFullHeightCabinet = 12500;
+    const priceFullHeightCabinet = 13500;
     const priceCabinetStretch = 1200;
     const priceShelve = 1200;
     const priceIslandLaminate60 = 8500;
