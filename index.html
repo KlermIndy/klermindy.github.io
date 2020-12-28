@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
   <script src="jQuery/jquery-3.4.1.min.js"></script>
   <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-  <script src="scripts/calculate2.js"></script>
+  <script src="scripts/calculate3.js"></script>
 </head>
 
 <body>
@@ -58,6 +58,13 @@
         <input type="number" class="form-control mt-3" id="cabinetStretch" placeholder="ความยาวยืดตู้ปิดบัว">
         <input type="number" class="form-control mt-3" id="shelve" placeholder="ความยาวชั้นเพาะ">
         <input type="number" class="form-control mt-3" id="island" placeholder="ความยาวโต๊ะกลาง">
+        <select class="form-control mt-3" id="type" val>
+          <option selected="selected" value="0">แบบปกติ</option>
+          <option value="1">แบบท้อปลามิเนต</option>
+          <option value="2">แบบท้อปหินแกรนิต</option>
+          <option value="3">แบบครัวปูนกรณีไม่รวมท้อป</option>
+          <option value="4">แบบครัวปูนแบบรวมท้อป</option>
+        </select>
         <h4 class="mt-4">จังหวัด</h4>
         <input type="text" class="form-control mt-3" id="district" placeholder="จังหวัด">
         <input type="number" class="form-control mt-3" id="districtPrice" placeholder="ค่าระยะทาง">
