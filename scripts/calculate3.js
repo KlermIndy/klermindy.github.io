@@ -1,8 +1,8 @@
 function calculate() {
     // $('#exampleModal').modal('toggle');
-    const priceAbove = 5500;
-    const priceBelowTopLaminate = 7500;
-    const priceBelowTopGranite = 12500;
+    const priceAbove = 5000;
+    const priceBelowTopLaminate = 8000;
+    const priceBelowTopGranite = 13000;
     
     const priceAboveOriginal = 5000;
     const priceBelowTopLaminateOriginal = 7000;
