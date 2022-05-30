@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
   <script src="jQuery/jquery-3.4.1.min.js"></script>
   <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-  <script src="scripts/calculate4.js"></script>
+  <script src="scripts/calculate5.js"></script>
 </head>
 
 <body>
@@ -85,8 +85,13 @@
         </div>
         <div class="modal-body">
           <p id="result">Modal body text goes here.</p>
+          <p id="alertCoppy"></p>
+          <input type="text" hidden id="resultPrice"/>
+          <input type="text" hidden id="resultDetail"/>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="coppy('resultPrice')">Coppy Price</button>
+          <button type="button" class="btn btn-primary" onclick="coppy('resultDetail')">Coppy Detail</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
