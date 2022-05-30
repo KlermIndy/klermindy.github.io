@@ -443,7 +443,7 @@ function generatePost() {
 
 function coppy(id) {
     let copyText = document.getElementById(id);
-    let resultText = copyText.value.replace(/<br \s*[\/]?>/gi, '\n');
+    let resultText = copyText.value.replace(/ <br \/\> /gi, '\n');
 
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(resultText);
