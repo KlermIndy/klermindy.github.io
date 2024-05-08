@@ -154,7 +154,7 @@ function calculate() {
     const cabinetStretchText = 'ค่ายืดตู้ปิดบัวกรณีเพดานสูงเกิน 220 cm<br />' + '👉 ' + numberWithCommas(resultPriceCabinetStretch) + ' บาท';
 
     // total price text
-    const headTotalPriceText = aboveBelowHasValue && !otherHasValue > 0 ? 'รวมทั้งตู้ด้านบนและด้านล่าง' : (aboveHasValue || belowHasValue) && otherHasValue ? 'รวมทั้งหมด' : '';
+    const headTotalPriceText = aboveBelowHasValue && !otherHasValue > 0 ? 'ราคารวมทั้งตู้ด้านบนและด้านล่าง' : (aboveHasValue || belowHasValue) && otherHasValue ? 'ราคารวมทั้งหมด' : '';
     const totalPriceTextTopLaminateMDF = headTotalPriceText + ' กรณี ไม้ MDF ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopLaminateMDF + resultPriceIslandLaminate60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
     const totalPriceTextTopGraniteMDF = headTotalPriceText + ' กรณี ไม้ MDF ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopGraniteMDF + resultPriceIslandGranite60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
     const totalPriceTextTopLaminateHMR = headTotalPriceText + ' กรณี ไม้ HMR ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveHMR + resultPriceBelowTopLaminateHMR + resultPriceIslandLaminate60HMR + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
@@ -168,7 +168,7 @@ function calculate() {
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopLaminateMDF + '<br />' + totalPriceTextTopGraniteMDF + '<br />' + totalPriceTextTopLaminateHMR + '<br />' + totalPriceTextTopGraniteHMR : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 4 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopGraniteMDF + '<br />3. ' + totalPriceTextTopLaminateHMR + '<br />4. ' + totalPriceTextTopGraniteHMR : '';
 
     } else if (type == 1) { // MDF
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF : '';
@@ -178,7 +178,7 @@ function calculate() {
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopLaminateMDF + '<br />' + totalPriceTextTopGraniteMDF : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopGraniteMDF : '';
     } else if (type == 2) { // HMR
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
         resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateHMR + '<br />' + belowPriceTextTopGraniteHMR : '';
@@ -187,7 +187,7 @@ function calculate() {
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopLaminateHMR + '<br />' + totalPriceTextTopGraniteHMR : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateHMR + '<br />2.' + totalPriceTextTopGraniteHMR : '';
     } else if (type == 3) { // แบบท้อปลามิเนต
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
         resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF + '<br />' + belowPriceTextTopLaminateHMR : '';
@@ -196,7 +196,7 @@ function calculate() {
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueAtLeastTwo ? '<br /><br />' + totalPriceTextTopLaminateMDF + '<br />' + totalPriceTextTopLaminateHMR : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopLaminateHMR : '';
     } else if (type == 4) { // แบบท้อปหินแกรนิต
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
         resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopGraniteMDF + '<br />' + belowPriceTextTopGraniteHMR : '';
@@ -205,7 +205,7 @@ function calculate() {
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopGraniteMDF + '<br />' + totalPriceTextTopGraniteHMR : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopGraniteMDF + '<br />2. ' + totalPriceTextTopGraniteHMR : '';
     } else if(type == 5) {
 
     } else if(type == 6) {
@@ -232,6 +232,8 @@ function calculate() {
     // }
 
     resultDetail += 'ราคารวม ครัว+ติดตั้ง';
+    resultDetail += '<br />';
+    resultDetail += '✅ ราคาสิทธิ ไม่คิด VAT เพิ่มแล้ว';
     resultDetail += '<br />';
     resultDetail += '✅ ฟรีค่าแรงปูกระเบื้องหรือโมเสค เหนือตู้ล่าง 60 cm';
     resultDetail += '<br />';
