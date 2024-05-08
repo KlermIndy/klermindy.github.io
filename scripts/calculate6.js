@@ -160,7 +160,7 @@ function calculate() {
     const totalPriceTextTopLaminateHMR = headTotalPriceText + ' กรณี ไม้ HMR ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveHMR + resultPriceBelowTopLaminateHMR + resultPriceIslandLaminate60HMR + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
     const totalPriceTextTopGraniteHMR = headTotalPriceText + ' กรณี ไม้ HMR ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAboveHMR + resultPriceBelowTopGraniteHMR + resultPriceIslandGranite60HMR + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
 
-    if(type == 0) { // แบบปกติ
+    if (type == 0) { // แบบปกติ
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
         resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF + '<br />' + belowPriceTextTopGraniteMDF + '<br />' + belowPriceTextTopLaminateHMR + '<br />' + belowPriceTextTopGraniteHMR : '';
         resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateMDF + '<br />' + islandPriceTextTopGraniteMDF + '<br />' + islandPriceTextTopLaminateHMR +  '<br />' + islandPriceTextTopGraniteHMR : '';
@@ -233,7 +233,7 @@ function calculate() {
 
     resultDetail += 'ราคารวม ครัว+ติดตั้ง';
     resultDetail += '<br />';
-    resultDetail += '✅ ราคาสิทธิ ไม่คิด VAT เพิ่มแล้ว';
+    resultDetail += '✅ ราคาสุทธิ ไม่คิด VAT เพิ่มแล้ว';
     resultDetail += '<br />';
     resultDetail += '✅ ฟรีค่าแรงปูกระเบื้องหรือโมเสค เหนือตู้ล่าง 60 cm';
     resultDetail += '<br />';
