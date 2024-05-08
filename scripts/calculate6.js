@@ -101,18 +101,20 @@ function calculate() {
     let resultIsland = '';
 
     // header
-    const headerTypeText = ['', '', '', 'กรณีมีโครงปูนพร้อมท้อปแล้ว<br /><br />', 'กรณีมีโครงปูนแล้ว<br /><br />'];
+    const headerTypeText = ['', '', '', '', '', 'กรณีมีโครงปูนพร้อมท้อปแล้ว<br /><br />', 'กรณีมีโครงปูนแล้ว<br /><br />'];
     resultPrice += headerTypeText[type];
 
     // type
-    if (belowKitchenType == kitchenType.I) {
-        resultPrice += 'ครัวตัวไอ ขนาด ' + xBelow + ' เมตร<br />';
-    }
-    else if (belowKitchenType == kitchenType.L) {
-        resultPrice += 'ครัวตัวแอล ขนาด ' + xBelow + 'x' + yBelow + ' เมตร<br />';
-    }
-    else if (belowKitchenType == kitchenType.U) {
-        resultPrice += 'ครัวตัวยู ขนาด ' + xBelow + 'x' + yBelow + 'x' + zBelow + ' เมตร<br />';
+    if(belowHasValue) {
+        if (belowKitchenType == kitchenType.I) {
+            resultPrice += 'ครัวตัวไอ ขนาด ' + xBelow + ' เมตร<br />';
+        }
+        else if (belowKitchenType == kitchenType.L) {
+            resultPrice += 'ครัวตัวแอล ขนาด ' + xBelow + 'x' + yBelow + ' เมตร<br />';
+        }
+        else if (belowKitchenType == kitchenType.U) {
+            resultPrice += 'ครัวตัวยู ขนาด ' + xBelow + 'x' + yBelow + 'x' + zBelow + ' เมตร<br />';
+        }
     }
 
     // ตู้บน
