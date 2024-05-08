@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
   <script src="jQuery/jquery-3.4.1.min.js"></script>
   <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-  <script src="scripts/calculate5.js"></script>
+  <script src="scripts/calculate6.js"></script>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
         <input type="number" class="form-control mt-3" id="yAbove" placeholder="ความยาว B">
         <input type="number" class="form-control mt-3" id="zAbove" placeholder="ความยาว C">
         <input type="number" class="form-control mt-3" id="aboveMinusWidth" placeholder="พื้นที่ซ้อนทับตู้บน">
-        <h4 class="mt-4">ตู้ล่าง</h4>
+        <h4 class="mt-4 d-inline-block">ตู้ล่าง</h4> <button type="button" class="btn btn-primary ml-2" onclick="coppyAbove()">Coppy Above</button>
         <input type="number" class="form-control mt-3" id="xBelow" placeholder="ความยาว A">
         <input type="number" class="form-control mt-3" id="yBelow" placeholder="ความยาว B">
         <input type="number" class="form-control mt-3" id="zBelow" placeholder="ความยาว C">
@@ -60,10 +60,16 @@
         <input type="number" class="form-control mt-3" id="island" placeholder="ความยาวโต๊ะกลาง">
         <select class="form-control mt-3" id="type" val>
           <option selected="selected" value="0">แบบปกติ</option>
-          <option value="1">แบบท้อปลามิเนต</option>
+          <option value="1">แบบ MDF</option>
+          <option value="2">แบบ HMR</option>
+          <option value="3">แบบท้อปลามิเนต</option>
+          <option value="4">แบบท้อปหินแกรนิต</option>
+          <option value="5">แบบครัวปูนกรณีไม่รวมท้อป</option>
+          <option value="6">แบบครัวปูนแบบรวมท้อป</option>
+          <!-- <option value="1">แบบท้อปลามิเนต</option>
           <option value="2">แบบท้อปหินแกรนิต</option>
           <option value="3">แบบครัวปูนกรณีไม่รวมท้อป</option>
-          <option value="4">แบบครัวปูนแบบรวมท้อป</option>
+          <option value="4">แบบครัวปูนแบบรวมท้อป</option> -->
         </select>
         <h4 class="mt-4">จังหวัด</h4>
         <input type="text" class="form-control mt-3" id="district" placeholder="จังหวัด">
