@@ -1,26 +1,5 @@
 function calculate() {
     // $('#exampleModal').modal('toggle');
-    const priceAboveMDF = 6000;
-    const priceBelowTopLaminateMDF = 10000;
-    const priceBelowTopGraniteMDF = 15000;
-
-    const priceAboveHMR = 7200;
-    const priceBelowTopLaminateHMR = 12000;
-    const priceBelowTopGraniteHMR = 17000;
-    
-    const priceFullHeightCabinet = 13500;
-    const priceCabinetStretch = 1500;
-    const priceShelve = 1200;
-
-    const priceIslandLaminate60MDF = 8500;
-    const priceIslandGranite60MDF = 13500;
-    const priceIslandGranite80MDF = 14500;
-    const priceIslandGranite90MDF = 15500;
-
-    const priceIslandLaminate60HMR = 8500;
-    const priceIslandGranite60HMR = 13500;
-    const priceIslandGranite80HMR = 14500;
-    const priceIslandGranite90HMR = 15500;
 
     const xAbove = parseFloat($('#xAbove').val()) || 0;
     const yAbove = parseFloat($('#yAbove').val()) || 0;
@@ -59,22 +38,29 @@ function calculate() {
     const aboveBelowHasValue = aboveHasValue && belowHasValue;
     const otherHasValue = [island, shelve, fullHeightCabinet, cabinetStretch].filter(x => x > 0).length > 0;
     const allHasValueMoreOne = [aboveWidth, belowWidth, island, shelve, fullHeightCabinet, cabinetStretch].filter(x => x > 0).length > 1;
+    
+    // price
+    const priceAboveMDF = aboveBelowHasValue ? 5500 : 6000;
+    const priceBelowTopLaminateMDF = aboveBelowHasValue ? 9500 : 10000;
+    const priceBelowTopGraniteMDF = priceBelowTopLaminateMDF + 5000;
+    
+    const priceFullHeightCabinet = 13500;
+    const priceCabinetStretch = 1000;
+    const priceShelve = 1200;
+
+    const priceIslandLaminate60MDF = 9500;
+    const priceIslandGranite60MDF = priceIslandLaminate60MDF + 5000;
+    const priceIslandGranite80MDF = priceIslandGranite60MDF + 1000;
+    const priceIslandGranite90MDF = priceIslandGranite80MDF + 1000;
 
     let resultPriceAboveMDF = Math.ceil(((aboveWidth - aboveMinusWidth) * priceAboveMDF) / 100) * 100;
     let resultPriceBelowTopLaminateMDF = Math.ceil(((belowWidth - belowMinusWidth) * priceBelowTopLaminateMDF) / 100) * 100;
     let resultPriceBelowTopGraniteMDF = Math.ceil(((belowWidth - belowMinusWidth) * priceBelowTopGraniteMDF) / 100) * 100;
 
-    let resultPriceAboveHMR = Math.ceil(((aboveWidth - aboveMinusWidth) * priceAboveHMR) / 100) * 100;
-    let resultPriceBelowTopLaminateHMR = Math.ceil(((belowWidth - belowMinusWidth) * priceBelowTopLaminateHMR) / 100) * 100;
-    let resultPriceBelowTopGraniteHMR = Math.ceil(((belowWidth - belowMinusWidth) * priceBelowTopGraniteHMR) / 100) * 100;
-
     // กรณีไม่คีย์ค่า
     resultPriceAboveMDF = resultPriceAboveMDF < 0 ? 0 : resultPriceAboveMDF;
     resultPriceBelowTopLaminateMDF = resultPriceBelowTopLaminateMDF < 0 ? 0 : resultPriceBelowTopLaminateMDF;
     resultPriceBelowTopGraniteMDF = resultPriceBelowTopGraniteMDF < 0 ? 0 : resultPriceBelowTopGraniteMDF;
-    resultPriceAboveHMR = resultPriceAboveHMR < 0 ? 0 : resultPriceAboveHMR;
-    resultPriceBelowTopLaminateHMR = resultPriceBelowTopLaminateHMR < 0 ? 0 : resultPriceBelowTopLaminateHMR;
-    resultPriceBelowTopGraniteHMR = resultPriceBelowTopGraniteHMR < 0 ? 0 : resultPriceBelowTopGraniteHMR;
 
     // ยืดตู้ปิดบัว
     let resultPriceCabinetStretch = Math.ceil((cabinetStretch * priceCabinetStretch) / 100) * 100;
@@ -90,10 +76,6 @@ function calculate() {
     let resultPriceIslandGranite60MDF = Math.ceil((island * priceIslandGranite60MDF) / 100) * 100;
     let resultPriceIslandGranite80MDF = Math.ceil((island * priceIslandGranite80MDF) / 100) * 100;
     let resultPriceIslandGranite90MDF = Math.ceil((island * priceIslandGranite90MDF) / 100) * 100;
-    let resultPriceIslandLaminate60HMR = Math.ceil((island * priceIslandLaminate60HMR) / 100) * 100;
-    let resultPriceIslandGranite60HMR = Math.ceil((island * priceIslandGranite60HMR) / 100) * 100;
-    let resultPriceIslandGranite80HMR = Math.ceil((island * priceIslandGranite80HMR) / 100) * 100;
-    let resultPriceIslandGranite90HMR = Math.ceil((island * priceIslandGranite90HMR) / 100) * 100;
 
 
     let resultPrice = '';
@@ -118,31 +100,27 @@ function calculate() {
     }
 
     // ตู้บน
-    const aboveTypeText = ['ตู้บนมีสองราคาค่ะ', 'ตู้บน', 'ตู้บน', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ'];
+    // const aboveTypeText = ['ตู้บนมีสองราคาค่ะ', 'ตู้บน', 'ตู้บน', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ', 'ตู้บนมีสองราคาค่ะ'];
     const aboveText = aboveKitchenType == kitchenType.I ?
-        aboveTypeText[type] + ' (ระยะรวม ' + aboveWidth.toFixed(2) + ' เมตร)':
-        aboveTypeText[type] + ' (ระยะรวม ' + aboveWidth.toFixed(2) + ' เมตร หักลบพื้นที่ซ้อนทับ ' + aboveMinusWidth + ' เมตร เหลือ ' + (aboveWidth - aboveMinusWidth).toFixed(2) + ' เมตร)';
-    const abovePriceTextMDF = '👉 ไม้ MDF ' + numberWithCommas(resultPriceAboveMDF) + ' บาท';
-    const abovePriceTextHMR = '👉 ไม้ HMR ' + numberWithCommas(resultPriceAboveHMR) + ' บาท';
+        'ตู้บน (ระยะรวม ' + aboveWidth.toFixed(2) + ' เมตร)':
+        'ตู้บน (ระยะรวม ' + aboveWidth.toFixed(2) + ' เมตร หักลบพื้นที่ซ้อนทับ ' + aboveMinusWidth + ' เมตร เหลือ ' + (aboveWidth - aboveMinusWidth).toFixed(2) + ' เมตร)';
+    const abovePriceTextMDF = '👉 ' + numberWithCommas(resultPriceAboveMDF) + ' บาท';
+    // const abovePriceTextHMR = '👉 ไม้ HMR ' + numberWithCommas(resultPriceAboveHMR) + ' บาท';
 
     // ตู้ล่าง
-    const belowNewline = aboveWidth > 0 ? '<br />' : '';
-    const belowTypeText = ['ตู้ล่างมีสี่ราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ'];
+    const belowNewline = aboveHasValue ? '<br />' : '';
+    const belowTypeText = ['ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่าง', 'ตู้ล่าง', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ'];
     const belowText = belowKitchenType == kitchenType.I ?
         belowNewline + belowTypeText[type] + ' (ระยะรวม ' + belowWidth.toFixed(2) + ' เมตร)':
         belowNewline + belowTypeText[type] + ' (ระยะรวม ' + belowWidth.toFixed(2) + ' เมตร หักลบพื้นที่ซ้อนทับ ' + belowMinusWidth + ' เมตร เหลือ ' + (belowWidth - belowMinusWidth).toFixed(2) + ' เมตร)';
-    const belowPriceTextTopLaminateMDF = '👉 ไม้ MDF ท้อป ลามิเนต ' + numberWithCommas(resultPriceBelowTopLaminateMDF) + ' บาท';
-    const belowPriceTextTopGraniteMDF = '👉 ไม้ MDF ท้อป หินแกรนิต ' + numberWithCommas(resultPriceBelowTopGraniteMDF) + ' บาท';
-    const belowPriceTextTopLaminateHMR = '👉 ไม้ HMR ท้อป ลามิเนต ' + numberWithCommas(resultPriceBelowTopLaminateHMR) + ' บาท';
-    const belowPriceTextTopGraniteHMR = '👉 ไม้ HMR ท้อป หินแกรนิต ' + numberWithCommas(resultPriceBelowTopGraniteHMR) + ' บาท';
+    const belowPriceTextTopLaminateMDF = '👉 ท้อป ลามิเนต ' + numberWithCommas(resultPriceBelowTopLaminateMDF) + ' บาท';
+    const belowPriceTextTopGraniteMDF = '👉 ท้อป หินแกรนิต ' + numberWithCommas(resultPriceBelowTopGraniteMDF) + ' บาท';
 
     // island
-    const islandTypeText = ['Island มีสี่ราคาค่ะ', 'Island มีสองราคาค่ะ', 'Island มีสองราคาค่ะ', 'Island มีสองราคาค่ะ', 'Island มีสองราคาค่ะ', '', ''];
+    const islandTypeText = ['Island มีสองราคาค่ะ', 'Island', 'Island', 'Island', 'Island', '', ''];
     const islandText = islandTypeText[type] + ' (ระยะรวม ' + island + ' เมตร)';
-    const islandPriceTextTopLaminateMDF = '👉 ไม้ MDF ท้อป ลามิเนต ลึก 60 cm ' + numberWithCommas(resultPriceIslandLaminate60MDF) + ' บาท';
-    const islandPriceTextTopGraniteMDF = '👉 ไม้ MDF ท้อป หินแกรนิต ลึก 60 cm ' + numberWithCommas(resultPriceIslandGranite60MDF) + ' บาท';
-    const islandPriceTextTopLaminateHMR = '👉 ไม้ HMR ท้อป ลามิเนต ลึก 60 cm ' + numberWithCommas(resultPriceIslandLaminate60HMR) + ' บาท';
-    const islandPriceTextTopGraniteHMR = '👉 ไม้ HMR ท้อป หินแกรนิต ลึก 60 cm ' + numberWithCommas(resultPriceIslandGranite60HMR) + ' บาท';
+    const islandPriceTextTopLaminateMDF = '👉 ท้อป ลามิเนต ลึก 60 cm ' + numberWithCommas(resultPriceIslandLaminate60MDF) + ' บาท';
+    const islandPriceTextTopGraniteMDF = '👉 ท้อป หินแกรนิต ลึก 60 cm ' + numberWithCommas(resultPriceIslandGranite60MDF) + ' บาท';
 
     // shelve
     const shelveText = 'ชั้นวางของ (ระยะรวม ' + shelve + ' เมตร)<br />' + '👉 ' + numberWithCommas(resultPriceShelve) + ' บาท';
@@ -155,22 +133,10 @@ function calculate() {
 
     // total price text
     const headTotalPriceText = aboveBelowHasValue && !otherHasValue > 0 ? 'ราคารวมทั้งตู้ด้านบนและด้านล่าง' : (aboveHasValue || belowHasValue) && otherHasValue ? 'ราคารวมทั้งหมด' : '';
-    const totalPriceTextTopLaminateMDF = headTotalPriceText + ' กรณี ไม้ MDF ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopLaminateMDF + resultPriceIslandLaminate60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
-    const totalPriceTextTopGraniteMDF = headTotalPriceText + ' กรณี ไม้ MDF ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopGraniteMDF + resultPriceIslandGranite60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
-    const totalPriceTextTopLaminateHMR = headTotalPriceText + ' กรณี ไม้ HMR ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveHMR + resultPriceBelowTopLaminateHMR + resultPriceIslandLaminate60HMR + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
-    const totalPriceTextTopGraniteHMR = headTotalPriceText + ' กรณี ไม้ HMR ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAboveHMR + resultPriceBelowTopGraniteHMR + resultPriceIslandGranite60HMR + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';;
+    const totalPriceTextTopLaminateMDF = headTotalPriceText + ' กรณี ท้อป ลามิเนต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopLaminateMDF + resultPriceIslandLaminate60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
+    const totalPriceTextTopGraniteMDF = headTotalPriceText + ' กรณี ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAboveMDF + resultPriceBelowTopGraniteMDF + resultPriceIslandGranite60MDF + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
 
     if (type == 0) { // แบบปกติ
-        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
-        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF + '<br />' + belowPriceTextTopGraniteMDF + '<br />' + belowPriceTextTopLaminateHMR + '<br />' + belowPriceTextTopGraniteHMR : '';
-        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateMDF + '<br />' + islandPriceTextTopGraniteMDF + '<br />' + islandPriceTextTopLaminateHMR +  '<br />' + islandPriceTextTopGraniteHMR : '';
-        resultPrice += shelve > 0 ? '<br />' + shelveText : '';
-        resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
-        resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
-
-        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 4 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopGraniteMDF + '<br />3. ' + totalPriceTextTopLaminateHMR + '<br />4. ' + totalPriceTextTopGraniteHMR : '';
-
-    } else if (type == 1) { // MDF
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF : '';
         resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF + '<br />' + belowPriceTextTopGraniteMDF : '';
         resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateMDF + '<br />' + islandPriceTextTopGraniteMDF : '';
@@ -179,36 +145,28 @@ function calculate() {
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
         resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopGraniteMDF : '';
-    } else if (type == 2) { // HMR
-        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
-        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateHMR + '<br />' + belowPriceTextTopGraniteHMR : '';
-        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateHMR +  '<br />' + islandPriceTextTopGraniteHMR : '';
+
+    } else if (type == 1) { // แบบท้อปลามิเนต
+        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF : '';
+        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF : '';
+        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateMDF : '';
         resultPrice += shelve > 0 ? '<br />' + shelveText : '';
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateHMR + '<br />2.' + totalPriceTextTopGraniteHMR : '';
-    } else if (type == 3) { // แบบท้อปลามิเนต
-        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
-        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopLaminateMDF + '<br />' + belowPriceTextTopLaminateHMR : '';
-        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminateMDF + '<br />' + islandPriceTextTopLaminateHMR : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br /> ' + totalPriceTextTopLaminateMDF : '';
+    } else if (type == 2) { // แบบท้อปหินแกรนิต
+        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF : '';
+        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopGraniteMDF : '';
+        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopGraniteMDF : '';
         resultPrice += shelve > 0 ? '<br />' + shelveText : '';
         resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopLaminateMDF + '<br />2. ' + totalPriceTextTopLaminateHMR : '';
-    } else if (type == 4) { // แบบท้อปหินแกรนิต
-        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceTextMDF + '<br />' + abovePriceTextHMR : '';
-        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextTopGraniteMDF + '<br />' + belowPriceTextTopGraniteHMR : '';
-        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopGraniteMDF + '<br />' + islandPriceTextTopGraniteHMR : '';
-        resultPrice += shelve > 0 ? '<br />' + shelveText : '';
-        resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
-        resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
+        resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopGraniteMDF : '';
+    } else if(type == 3) { // แบบครัวปูนกรณีไม่รวมท้อป
 
-        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextTopGraniteMDF + '<br />2. ' + totalPriceTextTopGraniteHMR : '';
-    } else if(type == 5) { // แบบครัวปูนกรณีไม่รวมท้อป
-
-    } else if(type == 6) { // แบบครัวปูนแบบรวมท้อป
+    } else if(type == 4) { // แบบครัวปูนแบบรวมท้อป
 
     }
 
@@ -254,7 +212,8 @@ function calculate() {
     resultDetail += '<br />';
     resultDetail += '<br />';
     // resultDetail += 'เราใช้วัสดุเป็น MDF ทั้งโครงตู้และหน้าบานค่ะ';
-    resultDetail += 'วัสดุโครงตู้และหน้าบานมีให้เลือกสองแบบ ทั้ง MDF และ HMR ค่ะ';
+    resultDetail += 'วัสดุโครงตู้และหน้าบานมีให้เลือกสองแบบ ทั้ง MDF และ HMR ราคาด้านบนเป็นราคาสำหรับไม้ MDF กรณีลูกค้าต้องการไม้ HMR<br />1. เฉพาะโครงสร้างไม่รวมหน้าบาน เพิ่มเงิน 2,000 บาท<br />2. ทั้งโครงสร้างและหน้าบาน เพิ่มเงิน 5,000 บาท';
+    resultDetail += '<br />';
     resultDetail += '<br />';
     resultDetail += '** กรณีลูกค้าต้องการทำโครงปูน ลูกค้าต้องก่อปูนไว้ค่ะ';
     if (aboveWidth > 0)
