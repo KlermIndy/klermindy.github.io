@@ -109,12 +109,14 @@ function calculate() {
 
     // ตู้ล่าง
     const belowNewline = aboveHasValue ? '<br />' : '';
-    const belowTypeText = ['ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่าง', 'ตู้ล่าง', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่างมีสองราคาค่ะ'];
+    const belowTypeText = ['ตู้ล่างมีสองราคาค่ะ', 'ตู้ล่าง', 'ตู้ล่าง', 'ตู้ล่าง', 'ตู้ล่างมีสองราคาค่ะ'];
     const belowText = belowKitchenType == kitchenType.I ?
         belowNewline + belowTypeText[type] + ' (ระยะรวม ' + belowWidth.toFixed(2) + ' เมตร)':
         belowNewline + belowTypeText[type] + ' (ระยะรวม ' + belowWidth.toFixed(2) + ' เมตร หักลบพื้นที่ซ้อนทับ ' + belowMinusWidth + ' เมตร เหลือ ' + (belowWidth - belowMinusWidth).toFixed(2) + ' เมตร)';
     const belowPriceTextTopLaminate = '👉 ท้อป ลามิเนต ' + numberWithCommas(resultPriceBelowTopLaminate) + ' บาท';
     const belowPriceTextTopGranite = '👉 ท้อป หินแกรนิต ' + numberWithCommas(resultPriceBelowTopGranite) + ' บาท';
+    const belowPriceTextCement = '👉 ตู้ล่างอย่างเดียวไม่รวมท้อป ' + numberWithCommas(resultPriceBelowTopLaminate) + ' บาท';
+    const belowPriceTextCementTopGranite = '👉 ตู้ล่าง + ท้อป หินแกรนิต ' + numberWithCommas(resultPriceBelowTopGranite) + ' บาท';
 
     // island
     const islandTypeText = ['Island มีสองราคาค่ะ', 'Island', 'Island', 'Island', 'Island', '', ''];
@@ -135,6 +137,8 @@ function calculate() {
     const headTotalPriceText = aboveBelowHasValue && !otherHasValue > 0 ? 'ราคารวมทั้งตู้ด้านบนและด้านล่าง' : (aboveHasValue || belowHasValue) && otherHasValue ? 'ราคารวมทั้งหมด' : '';
     const totalPriceTextTopLaminate = headTotalPriceText + ' กรณี ท้อป ลามิเนต ' + numberWithCommas(resultPriceAbove + resultPriceBelowTopLaminate + resultPriceIslandLaminate60 + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
     const totalPriceTextTopGranite = headTotalPriceText + ' กรณี ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAbove + resultPriceBelowTopGranite + resultPriceIslandGranite60 + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
+    const totalPriceTextCement = headTotalPriceText + 'ไม่รวมท้อป ' + numberWithCommas(resultPriceAbove + resultPriceBelowTopLaminate + resultPriceIslandLaminate60 + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
+    const totalPriceTextCementTopGranite = headTotalPriceText + ' + ท้อป หินแกรนิต ' + numberWithCommas(resultPriceAbove + resultPriceBelowTopGranite + resultPriceIslandGranite60 + resultPriceShelve + resultPriceCabinFullHeightCabinet + resultPriceCabinetStretch) + ' บาท';
 
     if (type == 0) { // แบบปกติ
         resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceText : '';
@@ -164,10 +168,25 @@ function calculate() {
         resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
         resultPrice += allHasValueMoreOne ? '<br /><br />' + totalPriceTextTopGranite : '';
-    } else if(type == 3) { // แบบครัวปูนกรณีไม่รวมท้อป
+    } else if (type == 3) { // แบบครัวปูนกรณีไม่รวมท้อป
+        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceText : '';
+        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextCement : '';
+        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminate : '';
+        resultPrice += shelve > 0 ? '<br />' + shelveText : '';
+        resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
+        resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
 
-    } else if(type == 4) { // แบบครัวปูนแบบรวมท้อป
+        resultPrice += allHasValueMoreOne ? '<br /><br /> ' + totalPriceTextCement : '';
 
+    } else if (type == 4) { // แบบครัวปูนแบบรวมท้อป
+        resultPrice += aboveWidth > 0 ? aboveText + '<br />' + abovePriceText : '';
+        resultPrice += belowWidth > 0 ? belowText + '<br />' + belowPriceTextCement + '<br />' + belowPriceTextCementTopGranite : '';
+        resultPrice += island > 0 ? '<br />' + islandText + '<br />' + islandPriceTextTopLaminate + '<br />' + islandPriceTextTopGranite : '';
+        resultPrice += shelve > 0 ? '<br />' + shelveText : '';
+        resultPrice += fullHeightCabinet > 0 ? '<br />' + fullHeightCabinetText : '';
+        resultPrice += cabinetStretch > 0 ? '<br />' + cabinetStretchText : '';
+
+        resultPrice += allHasValueMoreOne ? '<br /><br />สรุปราคารวมมีให้เลือก 2 แบบ<br />1. ' + totalPriceTextCement + '<br />2. ' + totalPriceTextCementTopGranite : '';
     }
 
 
